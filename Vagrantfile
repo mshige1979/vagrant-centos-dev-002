@@ -1,7 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# aaa
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
@@ -50,21 +49,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # vm3
-  config.vm.define :vm2 do|vm2|
+  config.vm.define :vm3 do|vm3|
     # box
-    vm2.vm.box = box_name
-    vm2.vm.box_url = box_url
+    vm3.vm.box = box_name
+    vm3.vm.box_url = box_url
 
     # network
-    vm2.vm.network "private_network", ip: "192.168.33.102"
+    vm3.vm.network "private_network", ip: "192.168.33.103"
 
     # share
-    vm2.vm.synced_folder "./data2", "/vagrant", \
+    vm3.vm.synced_folder "./data3", "/vagrant", \
         create: true, owner: 'vagrant', group: 'vagrant', \
         mount_options: ['dmode=777,fmode=666']
 
     # provision
-    vm2.vm.provision :shell, :path => "./data2/script.sh"
+    vm3.vm.provision :shell, :path => "./data3/script.sh"
 
   end
 
