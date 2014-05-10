@@ -48,4 +48,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   end
 
+  # vm3
+  config.vm.define :vm2 do|vm2|
+    # box
+    vm2.vm.box = box_name
+    vm2.vm.box_url = box_url
+
+    # network
+    vm2.vm.network "private_network", ip: "192.168.33.102"
+
+    # share
+    vm2.vm.synced_folder "./data2", "/vagrant", \
+        create: true, owner: 'vagrant', group: 'vagrant', \
+        mount_options: ['dmode=777,fmode=666']
+
+    # provision
+    vm2.vm.provision :shell, :path => "./data2/script.sh"
+
+  end
+
 end
