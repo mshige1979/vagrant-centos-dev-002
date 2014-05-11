@@ -57,6 +57,10 @@ sudo chkconfig nginx on
 sudo groupadd zabbix
 sudo useradd -g zabbix zabbix
 
+# yum
+sudo yum -y install net-snmp unixODBC OpenIPMI-libs ipa-pgothic-fonts --enablerepo=remi
+sudo yum -y install fping iksemel-utils libssh2-devel
+
 # wget
 sudo wget https://www.dropbox.com/s/94pc7xh0zlkzv1z/zabbix-2.2.2.tar.gz
 sudo mv zabbix-2.2.2.tar.gz /tmp/.
