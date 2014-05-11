@@ -53,4 +53,10 @@ sudo yum -y install nginx --enablerepo=nginx
 sudo service nginx start
 sudo chkconfig nginx on
 
-# 
+# user
+sudo groupadd zabbix
+sudo useradd -g zabbix zabbix
+
+# wget
+sudo wget https://www.dropbox.com/s/94pc7xh0zlkzv1z/zabbix-2.2.2.tar.gz
+
