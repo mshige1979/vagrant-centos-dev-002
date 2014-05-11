@@ -30,10 +30,13 @@ sudo chkconfig ntpd on
 # vim
 sudo yum -y install vim
 
+#php
 sudo rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm
 sudo yum -y --enablerepo=epel install re2c libmcrypt libmcrypt-devel
 sudo yum -y install libxml2-devel bison bison-devel openssl-devel curl-devel libjpeg-devel libpng-devel libmcrypt-devel readline-devel libtidy-devel libxslt-devel httpd-devel enchant-devel libXpm libXpm-devel freetype-devel t1lib t1lib-devel gmp-devel libc-client-devel libicu-devel oniguruma-devel net-snmp net-snmp-devel  bzip2-devel
 sudo yum -y install php55w php55w-bcmath php55w-cli php55w-common php55w-dba php55w-devel php55w-embedded php55w-enchant php55w-fpm php55w-gd php55w-imap php55w-interbase php55w-intl php55w-ldap php55w-mbstring php55w-mcrypt php55w-mssql php55w-mysql php55w-odbc php55w-opcache php55w-pdo php55w-pear.noarch php55w-pecl-apcu php55w-pecl-apcu-devel php55w-pecl-memcache php55w-pecl-xdebug php55w-pgsql php55w-process php55w-pspell php55w-recode php55w-snmp php55w-soap php55w-tidy php55w-xml php55w-xmlrpc
+sudo service php-fpm start
+sudo chkconfig php-fpm on
 
 # node
 sudo yum -y install nodejs npm --enablerepo=epel
@@ -59,4 +62,28 @@ sudo useradd -g zabbix zabbix
 
 # wget
 sudo wget https://www.dropbox.com/s/94pc7xh0zlkzv1z/zabbix-2.2.2.tar.gz
+
+sudo yum -y install net-snmp unixODBC OpenIPMI-libs ipa-pgothic-fonts --enablerepo=remi
+sudo yum -y install fping iksemel-utils libssh2-devel
+
+# zabbix 
+sudo mv zabbix-2.2.2.tar.gz /tmp/zabbix-2.2.2.tar.gz
+cd /tmp
+sudo tar zxf zabbix-2.2.2.tar.gz
+
+cd /tmp/zabbix-2.2.2
+./configure \
+    --prefix=/usr/share/zabbix \
+    --enable-server \
+    --enable-agent \
+    --enable-ipv6 \
+    --with-libcurl=/usr/bin/curl-config \
+    --with-mysql=/usr/bin/mysql_config \
+    --with-net-snmp=/usr/bin/net-snmp-config
+
+make
+make install
+
+
+
 
