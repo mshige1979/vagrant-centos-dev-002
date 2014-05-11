@@ -111,3 +111,5 @@ sudo service php-fpm restart
 sudo cp -R /tmp/zabbix-2.2.2/frontends/php /var/www/html/zabbix
 
 sudo mkdir -p /var/log/nginx/dev.zabbix.com
+sudo cp -f dev.zabbix.com.conf /etc/nginx/conf.d/dev.zabbix.com.conf
+
