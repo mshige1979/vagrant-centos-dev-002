@@ -100,16 +100,18 @@ sudo cp -a /tmp/zabbix-2.2.2/misc/init.d/fedora/core5/* /etc/init.d/
 sudo cp -f /vagrant/zabbix_server /etc/init.d/zabbix_server
 sudo cp -f /vagrant/zabbix_agentd /etc/init.d/zabbix_agentd
 
+# zabbix restart
 sudo service zabbix_server start
 sudo chkconfig zabbix_server on
 sudo service zabbix_agentd start
 sudo chkconfig zabbix_agentd on
 
+# config file edit
 sudo cp -f /vagrant/php.ini /etc/php.ini
 sudo service php-fpm restart
-
 sudo cp -R /tmp/zabbix-2.2.2/frontends/php /var/www/html/zabbix
-
 sudo mkdir -p /var/log/nginx/dev.zabbix.com
 sudo cp -f dev.zabbix.com.conf /etc/nginx/conf.d/dev.zabbix.com.conf
 
+# nginx restart
+sudo service nginx restart
