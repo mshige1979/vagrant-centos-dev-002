@@ -60,3 +60,21 @@ sudo useradd -g zabbix zabbix
 # wget
 sudo wget https://www.dropbox.com/s/94pc7xh0zlkzv1z/zabbix-2.2.2.tar.gz
 
+# zabbix agent
+cd /tmp
+sudo tar zxf zabbix-2.2.2.tar.gz
+cd zabbix-2.2.2
+sudo ./configure \
+    --prefix=/usr/share/zabbix \
+    --enable-agent
+sudo make && sudo make install
+
+# log
+sudo mkdir -p /var/log/zabbix
+chown -R zabbix.zabbix /var/log/zabbix/
+
+
+
+
+
+
