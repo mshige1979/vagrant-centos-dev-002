@@ -9,3 +9,9 @@ zabbix2.xを設定してみる
 git clone https://github.com/mshige1979/vagrant-centos-dev-002.git -b zabbix2.x zabbix2.x
 ```
 
+### vagrant up
+```
+vagrant up
+```
+とても時間がかかる
+
