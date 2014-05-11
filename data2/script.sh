@@ -80,8 +80,7 @@ sudo chown -R zabbix.zabbix /var/log/zabbix/
 
 # zabbix conf copy
 sudo cp -f /vagrant/zabbix_agentd.conf /usr/share/zabbix/etc/zabbix_agentd.conf
-
-
+sudo cp -a /tmp/zabbix-2.2.2/misc/init.d/fedora/core5/zabbix_agentd /etc/init.d/.
 
 
 
