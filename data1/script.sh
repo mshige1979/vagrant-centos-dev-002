@@ -94,7 +94,7 @@ mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/schema.sql
 mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/images.sql
 mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/data.sql
 
-
+# config copy
 sudo cp -f /vagrant/zabbix_server.conf /usr/share/zabbix/etc/zabbix_server.conf
-
+sudo cp -a /tmp/zabbix-2.2.2/misc/init.d/fedora/core5/* /etc/init.d/
 
