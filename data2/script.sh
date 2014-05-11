@@ -76,7 +76,7 @@ sudo make && sudo make install
 
 # log
 sudo mkdir -p /var/log/zabbix
-chown -R zabbix.zabbix /var/log/zabbix/
+sudo chown -R zabbix.zabbix /var/log/zabbix/
 
 
 
