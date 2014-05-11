@@ -85,6 +85,14 @@ sudo make && sudo make install
 
 # mysql settings
 sudo cp -f /vagrant/my.cnf /etc/my.cnf
+sudo service mysqld restart
+
+# database
+mysql -uroot -e "create database zabbix character set utf8;"
+mysql -uroot -e "grant all privileges on zabbix.* to zabbix@localhost identified by 'password';"
+mysql -uroot -p zabbix < /tmp/zabbix-2.2.2/database/mysql/schema.sql
+mysql -uroot -p zabbix < /tmp/zabbix-2.2.2/database/mysql/images.sql
+mysql -uroot -p zabbix < /tmp/zabbix-2.2.2/database/mysql/data.sql
 
 
 
