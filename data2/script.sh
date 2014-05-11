@@ -59,6 +59,7 @@ sudo useradd -g zabbix zabbix
 
 # wget
 sudo wget https://www.dropbox.com/s/94pc7xh0zlkzv1z/zabbix-2.2.2.tar.gz
+sudo mv zabbix-2.2.2.tar.gz /tmp/.
 
 # zabbix agent
 cd /tmp
