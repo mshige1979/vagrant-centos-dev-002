@@ -78,6 +78,8 @@ sudo make && sudo make install
 sudo mkdir -p /var/log/zabbix
 sudo chown -R zabbix.zabbix /var/log/zabbix/
 
+# zabbix conf copy
+sudo cp -f /vagrant/zabbix_agentd.conf /usr/share/zabbix/etc/zabbix_agentd.conf
 
 
 
