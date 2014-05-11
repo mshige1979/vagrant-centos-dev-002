@@ -114,6 +114,7 @@ sudo mkdir -p /var/log/nginx/dev.zabbix.com
 sudo cp -f /vagrant/dev.zabbix.com.conf /etc/nginx/conf.d/dev.zabbix.com.conf
 sudo cp -f /vagrant/zabbix.conf.php /var/www/html/zabbix/conf/zabbix.conf.php
 sudo chown -R zabbix.zabbix /var/www/html/zabbix/
+sudo chmod 777 -R /var/www/html/zabbix/
 
 # nginx restart
 sudo service nginx restart
