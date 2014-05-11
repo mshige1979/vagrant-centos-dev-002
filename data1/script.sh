@@ -72,7 +72,7 @@ cd /tmp
 sudo tar zxf zabbix-2.2.2.tar.gz
 
 cd /tmp/zabbix-2.2.2
-./configure \
+sudo ./configure \
     --prefix=/usr/share/zabbix \
     --enable-server \
     --enable-agent \
@@ -81,8 +81,8 @@ cd /tmp/zabbix-2.2.2
     --with-mysql=/usr/bin/mysql_config \
     --with-net-snmp=/usr/bin/net-snmp-config
 
-make
-make install
+sudo make && sudo make install
+
 
 
 
