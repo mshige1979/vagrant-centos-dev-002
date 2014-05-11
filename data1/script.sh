@@ -100,3 +100,8 @@ sudo cp -a /tmp/zabbix-2.2.2/misc/init.d/fedora/core5/* /etc/init.d/
 sudo cp -f /vagrant/zabbix_server /etc/init.d/zabbix_server
 sudo cp -f /vagrant/zabbix_agentd /etc/init.d/zabbix_agentd
 
+sudo service zabbix_server start
+sudo chkconfig zabbix_server on
+sudo service zabbix_agentd start
+sudo chkconfig zabbix_agentd on
+
