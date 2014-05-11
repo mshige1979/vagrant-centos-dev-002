@@ -57,5 +57,32 @@ sudo chkconfig nginx on
 sudo groupadd zabbix
 sudo useradd -g zabbix zabbix
 
+# yum
+sudo yum -y install net-snmp unixODBC OpenIPMI-libs ipa-pgothic-fonts --enablerepo=remi
+sudo yum -y install fping iksemel-utils libssh2-devel
+
 # wget
 sudo wget https://www.dropbox.com/s/94pc7xh0zlkzv1z/zabbix-2.2.2.tar.gz
+sudo mv zabbix-2.2.2.tar.gz /tmp/.
+
+# zabbix agent
+cd /tmp
+sudo tar zxf zabbix-2.2.2.tar.gz
+cd zabbix-2.2.2
+sudo ./configure \
+    --prefix=/usr/share/zabbix \
+    --enable-agent
+sudo make && sudo make install
+
+# log
+sudo mkdir -p /var/log/zabbix
+sudo chown -R zabbix.zabbix /var/log/zabbix/
+
+# zabbix conf copy
+sudo cp -f /vagrant/zabbix_agentd.conf /usr/share/zabbix/etc/zabbix_agentd.conf
+sudo cp -a /tmp/zabbix-2.2.2/misc/init.d/fedora/core5/zabbix_agentd /etc/init.d/.
+sudo cp -f /vagrant/zabbix_agentd /etc/init.d/zabbix_agentd
+
+# service
+sudo service zabbix_agentd start
+sudo chkconfig zabbix_agentd on
