@@ -112,9 +112,8 @@ sudo service php-fpm restart
 sudo cp -R /tmp/zabbix-2.2.2/frontends/php /var/www/html/zabbix
 sudo mkdir -p /var/log/nginx/dev.zabbix.com
 sudo cp -f /vagrant/dev.zabbix.com.conf /etc/nginx/conf.d/dev.zabbix.com.conf
-sudo cp -f /var/www/html/zabbix/conf/zabbix.conf.php.example /var/www/html/zabbix/conf/zabbix.conf.php
+sudo cp -f /vagrant/zabbix.conf.php /var/www/html/zabbix/conf/zabbix.conf.php
 sudo chown -R zabbix.zabbix /var/www/html/zabbix/
-
 
 # nginx restart
 sudo service nginx restart
