@@ -90,9 +90,9 @@ sudo service mysqld restart
 # database
 mysql -uroot -e "create database zabbix character set utf8;"
 mysql -uroot -e "grant all privileges on zabbix.* to zabbix@localhost identified by 'password';"
-mysql -uroot -p zabbix < /tmp/zabbix-2.2.2/database/mysql/schema.sql
-mysql -uroot -p zabbix < /tmp/zabbix-2.2.2/database/mysql/images.sql
-mysql -uroot -p zabbix < /tmp/zabbix-2.2.2/database/mysql/data.sql
+mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/schema.sql
+mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/images.sql
+mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/data.sql
 
 
 sudo cp -f /vagrant/zabbix_server.conf /usr/share/zabbix/etc/zabbix_server.conf
