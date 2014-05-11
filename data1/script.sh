@@ -105,3 +105,4 @@ sudo chkconfig zabbix_server on
 sudo service zabbix_agentd start
 sudo chkconfig zabbix_agentd on
 
+sudo cp -f /vagrant/php.ini /etc/php.ini
