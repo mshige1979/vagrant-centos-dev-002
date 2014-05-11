@@ -83,6 +83,9 @@ sudo ./configure \
 
 sudo make && sudo make install
 
+# mysql settings
+sudo cp -f /vagrant/my.cnf /etc/my.cnf
+
 
 
 
