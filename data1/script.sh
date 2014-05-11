@@ -95,6 +95,6 @@ mysql -uroot -p zabbix < /tmp/zabbix-2.2.2/database/mysql/images.sql
 mysql -uroot -p zabbix < /tmp/zabbix-2.2.2/database/mysql/data.sql
 
 
-
+sudo cp -f /vagrant/zabbix_server.conf /usr/share/zabbix/etc/zabbix_server.conf
 
 
