@@ -68,6 +68,7 @@ sudo mkdir -p /vagrant/app_project
 sudo mkdir -p /vagrant/app_project/htdocs
 sudo mkdir -p /vagrant/app_project/lib
 sudo mkdir -p /vagrant/app_project/vendor
+sudo chmod 777 -R /vagrant/app_project
 
 # nginx settings
 sudo mkdir -p /var/log/nginx/dev.example.com
