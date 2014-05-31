@@ -62,6 +62,12 @@ sudo yum -y install fping iksemel-utils libssh2-devel
 # nginx restart
 sudo service nginx restart
 
+# htdocs
+cd /vagrant
+sudo mkdir -p /vagrant/app_project
+sudo mkdir -p /vagrant/app_project/htdocs
+sudo mkdir -p /vagrant/app_project/lib
+sudo mkdir -p /vagrant/app_project/vendor
 
 # nginx settings
 sudo mkdir -p /var/log/nginx/dev.example.com
