@@ -9,3 +9,9 @@ webrtc_test
 git clone https://github.com/mshige1979/vagrant-centos-dev-002.git -b webrtc_test webrtc_test
 ```
 
+### 端末にアクセスしてシグナリングサーバを起動
+```
+cd /vagrant/app_project/
+node signaling.js
+```
+
