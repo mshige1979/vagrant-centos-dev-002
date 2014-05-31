@@ -78,7 +78,7 @@ cat <<'_EOT_' > /tmp/dev.example.com.conf
 server {
     listen       80;
     server_name  dev.example.com
-                 192.168.33.10
+                 192.168.50.111
                  ;
 
     access_log  /var/log/nginx/dev.example.com/access.log  main;
