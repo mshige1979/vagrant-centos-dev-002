@@ -57,7 +57,61 @@ sudo chkconfig nginx on
 sudo yum -y install net-snmp unixODBC OpenIPMI-libs ipa-pgothic-fonts --enablerepo=remi
 sudo yum -y install fping iksemel-utils libssh2-devel
 
-# service
-sudo service zabbix_agentd start
-sudo chkconfig zabbix_agentd on
+
+
+# nginx settings
+sudo mkdir -p /var/log/nginx/dev.example.com
+sudo cp -p /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.org
+sudo cat /etc/php-fpm.d/www.conf > /tmp/www.conf
+sudo sed -i 's/user = apache/user = nginx/g'                   /tmp/www.conf
+sudo sed -i 's/group = apache/group = nginx/g'                 /tmp/www.conf
+sudo sed -i 's/;listen.mode = 0666/listen.mode = 0666/g'       /tmp/www.conf
+sudo sed -i 's/;listen.owner = nobody/listen.owner = nginx/g'  /tmp/www.conf
+sudo sed -i 's/;listen.group = nobody/listen.group = nginx/g'  /tmp/www.conf
+sudo mv /tmp/www.conf /etc/php-fpm.d/www.conf
+
+cat <<'_EOT_' > /tmp/dev.example.com.conf
+server {
+    listen       80;
+    server_name  dev.example.com
+                 192.168.50.112
+                 ;
+
+    access_log  /var/log/nginx/dev.example.com/access.log  main;
+    error_log   /var/log/nginx/dev.example.com/error.log;
+
+    root   /vagrant/app_project/htdocs;
+
+    index  index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$uri&$args;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+
+    location ~ (\.htaccess|\.git|\.svn) {
+        deny  all;
+    }
+    
+    charset utf-8;
+    
+}
+
+_EOT_
+
+
+sudo mkdir -p /var/log/nginx/dev.example.com
+sudo mv /tmp/dev.example.com.conf /etc/nginx/conf.d/dev.example.com.conf
+
+
+# nginx restart
+sudo service nginx restart
+sudo service php-fpm restart
 
