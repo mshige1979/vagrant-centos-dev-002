@@ -126,8 +126,7 @@ sudo mv /tmp/dev.example.com.conf /etc/nginx/conf.d/dev.example.com.conf
 sudo service nginx restart
 sudo service php-fpm restart
 
-
+# signaling settings
 cd /vagrant/app_project
 npm install socket.io
-
-
+cp -p /vagrant/signaling.js /vagrant/app_project/signaling.js
