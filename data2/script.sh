@@ -121,3 +121,6 @@ sudo mv /tmp/dev.example.com.conf /etc/nginx/conf.d/dev.example.com.conf
 sudo service nginx restart
 sudo service php-fpm restart
 
+# sample.html settings
+cp -p /vagrant/sample1.html /vagrant/app_project/htdocs/sample1.html
+
