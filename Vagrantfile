@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm1.vm.box_url = box_url
     
     # network
-    vm1.vm.network "private_network", ip: "192.168.33.111"
+    vm1.vm.network "private_network", ip: "192.168.50.111"
 
     # share
     vm1.vm.synced_folder "./data1", "/vagrant", \
@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm2.vm.box_url = box_url
 
     # network
-    vm2.vm.network "private_network", ip: "192.168.33.112"
+    vm2.vm.network "private_network", ip: "192.168.50.112"
 
     # share
     vm2.vm.synced_folder "./data2", "/vagrant", \
@@ -55,7 +55,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm3.vm.box_url = box_url
 
     # network
-    vm3.vm.network "private_network", ip: "192.168.33.113"
+    vm3.vm.network "private_network", ip: "192.168.50.113"
 
     # share
     vm3.vm.synced_folder "./data3", "/vagrant", \
