@@ -14,7 +14,7 @@ sudo yum -y groupinstall "Development Tools"
 
 cd /etc/yum.repos.d/
 sudo wget http://wing-repo.net/wing/6/EL6.wing.repo
-sudo wget http://wing-net.ddo.jp/wing/extras/6/EL6.wing-extras.repo
+sudo wget http://wing-repo.net/wing/extras/6/EL6.wing-extras.repo
 sudo yum clean all
 sudo yum -y install yum-priorities
 
@@ -56,69 +56,5 @@ sudo yum -y install nginx --enablerepo=nginx
 sudo service nginx start
 sudo chkconfig nginx on
 
-# user
-sudo groupadd zabbix
-sudo useradd -g zabbix zabbix
-
-# wget
-sudo wget https://www.dropbox.com/s/94pc7xh0zlkzv1z/zabbix-2.2.2.tar.gz
-
 sudo yum -y install net-snmp unixODBC OpenIPMI-libs ipa-pgothic-fonts --enablerepo=remi
 sudo yum -y install fping iksemel-utils libssh2-devel
-
-# zabbix 
-sudo mv zabbix-2.2.2.tar.gz /tmp/zabbix-2.2.2.tar.gz
-cd /tmp
-sudo tar zxf zabbix-2.2.2.tar.gz
-
-cd /tmp/zabbix-2.2.2
-sudo ./configure \
-    --prefix=/usr/share/zabbix \
-    --enable-server \
-    --enable-agent \
-    --enable-ipv6 \
-    --with-libcurl=/usr/bin/curl-config \
-    --with-mysql=/usr/bin/mysql_config \
-    --with-net-snmp=/usr/bin/net-snmp-config
-
-sudo make && sudo make install
-
-# mysql settings
-sudo cp -f /vagrant/my.cnf /etc/my.cnf
-sudo service mysqld restart
-
-# database
-mysql -uroot -e "create database zabbix character set utf8;"
-mysql -uroot -e "grant all privileges on zabbix.* to zabbix@localhost identified by 'password';"
-mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/schema.sql
-mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/images.sql
-mysql -uroot  zabbix < /tmp/zabbix-2.2.2/database/mysql/data.sql
-
-# config copy
-sudo cp -f /vagrant/zabbix_server.conf /usr/share/zabbix/etc/zabbix_server.conf
-sudo cp -a /tmp/zabbix-2.2.2/misc/init.d/fedora/core5/* /etc/init.d/
-sudo cp -f /vagrant/zabbix_server /etc/init.d/zabbix_server
-sudo cp -f /vagrant/zabbix_agentd /etc/init.d/zabbix_agentd
-
-# log
-sudo mkdir -p /var/log/zabbix
-sudo chown -R zabbix.zabbix /var/log/zabbix/
-
-# zabbix restart
-sudo service zabbix_server start
-sudo chkconfig zabbix_server on
-sudo service zabbix_agentd start
-sudo chkconfig zabbix_agentd on
-
-# config file edit
-sudo cp -f /vagrant/php.ini /etc/php.ini
-sudo service php-fpm restart
-sudo cp -R /tmp/zabbix-2.2.2/frontends/php /var/www/html/zabbix
-sudo mkdir -p /var/log/nginx/dev.zabbix.com
-sudo cp -f /vagrant/dev.zabbix.com.conf /etc/nginx/conf.d/dev.zabbix.com.conf
-sudo cp -f /vagrant/zabbix.conf.php /var/www/html/zabbix/conf/zabbix.conf.php
-sudo chown -R zabbix.zabbix /var/www/html/zabbix/
-sudo chmod 777 -R /var/www/html/zabbix/
-
-# nginx restart
-sudo service nginx restart
