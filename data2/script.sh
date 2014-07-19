@@ -14,7 +14,7 @@ sudo yum -y groupinstall "Development Tools"
 
 cd /etc/yum.repos.d/
 sudo wget http://wing-repo.net/wing/6/EL6.wing.repo
-sudo wget http://wing-net.ddo.jp/wing/extras/6/EL6.wing-extras.repo
+sudo wget http://wing-repo.net/wing/extras/6/EL6.wing-extras.repo
 sudo yum clean all
 sudo yum -y install yum-priorities
 
